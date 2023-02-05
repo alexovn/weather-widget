@@ -45,13 +45,13 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, shallowRef } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 
 import IconCloudy from '@/components/Icon/IconCloudy.vue';
 import 'swiper/css';
 
-const currentConditionIcon = IconCloudy;
+const currentConditionIcon = shallowRef(IconCloudy);
 
 const cities = ref([
   {

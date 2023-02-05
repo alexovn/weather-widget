@@ -2,7 +2,9 @@
   <div
     class="relative p-4 w-96 flex flex-col bg-slate-50 shadow-md rounded-3xl bg-clip-padding backdrop-filter bg-opacity-60 backdrop-blur-xl overflow-hidden">
     <transition name="translate" mode="out-in">
-      <component :is="componentName" @change-component="changeViews"></component>
+      <keep-alive>
+        <component :is="componentName" @change-component="changeViews"></component>
+      </keep-alive>
     </transition>
   </div>
 </template>
@@ -18,16 +20,3 @@ const changeViews = (component) => {
 }
 
 </script>
-
-<style scoped>
-.translate-enter-active,
-.translate-leave-active {
-  transition: all 0.5s ease;
-}
-
-.translate-enter-from,
-.translate-leave-to {
-  opacity: 0;
-  transform: translateY(30px);
-}
-</style>

@@ -49,7 +49,7 @@
     <div class="mt-3 min-h-[1.4rem]">
       <WeatherCredits />
       <button
-        class="absolute bottom-4 right-4 ml-auto w-6 h-6 flex items-center justify-center hover:rotate-12 transition-transform"
+        class="mt-1 ml-auto w-6 h-6 flex items-center justify-center hover:rotate-12 transition-transform"
         @click="$emit('changeComponent', WeatherSettings)"
       >
         <Cog8ToothIcon class="w-full h-full text-slate-800" />

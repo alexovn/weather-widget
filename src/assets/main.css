@@ -11,6 +11,13 @@ body {
   background-image: url('../assets/img/ansgar-scheffold-unsplash-bg.jpg');
 }
 
-.scrollbar::-webkit-scrollbar-track {
-  background: transparent;
+.translate-enter-active,
+.translate-leave-active {
+  transition: all 0.5s ease;
+}
+
+.translate-enter-from,
+.translate-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
 }

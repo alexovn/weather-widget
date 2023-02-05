@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  height: 100vh;
+  background-color: #6c838e;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../assets/img/ansgar-scheffold-unsplash-bg.jpg');
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}

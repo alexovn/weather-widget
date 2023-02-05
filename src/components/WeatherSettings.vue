@@ -11,10 +11,8 @@
         <UiButtonDefault name="Add" @click="addCity" />
       </UiInput>
     </div>
-    
-    <transition name="translate" mode="out-in">
-      <WeatherCitiesList v-if="citiesList.length" :citiesList="citiesList" @deleteItem="deleteCity" />
-    </transition>
+
+    <WeatherCitiesList v-if="citiesList.length" :citiesList="citiesList" @deleteItem="deleteCity" />
   </div>
 </template>
 

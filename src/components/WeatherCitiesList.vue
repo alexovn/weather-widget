@@ -2,7 +2,13 @@
   <div class="mt-3 p-4 bg-slate-300 rounded-2xl">
     <div
       class="p-2 flex items-center justify-between bg-slate-50 rounded-xl group hover:bg-slate-400 transition-colors [&:not(:last-child)]:mb-2"
-      v-for="(city, idx) in citiesList" :key="city.id">
+      v-for="(city, idx) in cities" :key="city.id"
+      draggable="true"
+      @dragstart="onDragStart($event, idx, city)"
+      @drop="onDrop($event, idx)"
+      @dragover.prevent
+      @dragenter.prevent
+    >
       <div>
         <span class="block w-5 h-5 cursor-grab active:cursor-grabbing">
           <Bars3Icon class="w-full h-full group-hover:text-white transition-colors" />
@@ -19,13 +25,31 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import { Bars3Icon, TrashIcon } from '@heroicons/vue/24/outline';
 
-defineProps({
+const props = defineProps({
   citiesList: {
     type: Array,
     default: () => []
   }
 });
+
+const cities = ref(props.citiesList);
+
+const dragging = ref(0);
+
+const onDragStart = (e, idx, city) => {
+  e.dataTransfer.dropEffect = 'move';
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('itemId', city.id);
+  dragging.value = idx;
+};
+
+const onDrop = (e, idx) => {
+  const data = e.dataTransfer.getData('itemId');
+  cities.value.splice(idx, 0, cities.value.splice(dragging.value, 1)[0]);
+  console.log(data);
+};
 
 </script>

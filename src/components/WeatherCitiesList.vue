@@ -28,14 +28,12 @@
 import { ref } from 'vue';
 import { Bars3Icon, TrashIcon } from '@heroicons/vue/24/outline';
 
-const props = defineProps({
-  citiesList: {
-    type: Array,
-    default: () => []
-  }
-});
+import { storeToRefs } from 'pinia';
+import { useCitiesStore } from '@/stores/cities';
 
-const cities = ref(props.citiesList);
+const store = useCitiesStore();
+
+const { cities } = storeToRefs(store);
 
 const dragging = ref(0);
 
@@ -48,8 +46,9 @@ const onDragStart = (e, idx, city) => {
 
 const onDrop = (e, idx) => {
   const data = e.dataTransfer.getData('itemId');
-  cities.value.splice(idx, 0, cities.value.splice(dragging.value, 1)[0]);
-  console.log(data);
+  store.$patch((state) => {
+    state.cities.splice(idx, 0, state.cities.splice(dragging.value, 1)[0]);
+  });
 };
 
 </script>

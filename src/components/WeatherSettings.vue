@@ -12,12 +12,14 @@
       </UiInput>
     </div>
 
-    <WeatherCitiesList v-if="citiesList.length" :citiesList="citiesList" @deleteItem="deleteCity" />
+    <WeatherCitiesList v-if="cities.length" @deleteItem="deleteCity" />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import { useCitiesStore } from '@/stores/cities';
+import { storeToRefs } from 'pinia';
 import { XCircleIcon } from '@heroicons/vue/24/outline';
 
 import WeatherView from '@/components/WeatherView.vue';
@@ -26,19 +28,26 @@ import WeatherCitiesList from '@/components/WeatherCitiesList.vue';
 import UiInput from '@/components/Ui/UiInput.vue';
 import UiButtonDefault from '@/components/Ui/Button/UiButtonDefault.vue';
 
+const store = useCitiesStore();
 const citySearch = ref('');
-const citiesList = ref([]);
+
+const { cities } = storeToRefs(store);
 
 const addCity = () => {
-  citiesList.value.push({
-    id: Date.now(),
-    name: citySearch.value
+  store.$patch((state) => {
+    state.cities.push({
+      id: Date.now(),
+      name: citySearch.value
+    });
   });
+
   citySearch.value = '';
 };
 
 const deleteCity = (idx) => {
-  citiesList.value.splice(idx, 1)
+  store.$patch((state) => {
+    state.cities.splice(idx, 1);
+  });
 };
 
 </script>

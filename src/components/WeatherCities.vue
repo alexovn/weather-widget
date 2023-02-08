@@ -5,35 +5,35 @@
         class="p-2 w-[6rem] h-[6rem] shrink-0 bg-slate-200 rounded-2xl hover:bg-slate-400 transition-colors cursor-pointer"
         v-for="city in cities" :key="city.id">
         <div class="mb-1 flex items-start justify-between">
-          <div class="w-[1rem] h-[1rem]">
-            <component class="w-full h-full" :is="currentConditionIcon"></component>
+          <div class="w-[2rem] h-[2rem]">
+            <img :src="`http://openweathermap.org/img/wn/${city.weather.icon}@2x.png`" alt="" />
           </div>
           <div class="max-w-[3.3rem] text-[0.7rem] text-right">
             <div class="font-medium truncate">
               {{ city.name }}
             </div>
             <div class="text-[0.5rem]">
-              {{ city.condition }}
+              {{ city.weather.description }}
             </div>
           </div>
         </div>
         <div>
           <div class="flex items-start">
             <span class="text-2xl font-medium">
-              {{ city.temp }}
+              {{ Math.round(city.temp) }}
             </span>
             <span class="text-2xl">&#176;</span>
           </div>
           <div class="flex items-center gap-1">
             <div class="flex items-start">
               <span class="text-[0.7rem]">
-                {{ city.maxTemp }}
+                {{ Math.round(city.tempMax) }}
               </span>
               <span class="text-[0.7rem]">&#176;</span>
             </div>
             <div class="flex items-start">
               <span class="text-[0.7rem]">
-                {{ city.minTemp }}
+                {{ Math.round(city.tempMin) }}
               </span>
               <span class="text-[0.7rem]">&#176;</span>
             </div>
@@ -45,51 +45,13 @@
 </template>
 
 <script setup>
-import { ref, shallowRef } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
-
-import IconCloudy from '@/components/Icon/IconCloudy.vue';
 import 'swiper/css';
 
-const currentConditionIcon = shallowRef(IconCloudy);
+import { useCitiesStore } from '@/stores/cities';
+import { storeToRefs } from 'pinia';
 
-const cities = ref([
-  {
-    id: 1,
-    icon: '',
-    name: 'Yekaterinburg',
-    condition: 'cloudy',
-    temp: '19',
-    maxTemp: '21',
-    minTemp: '14'
-  },
-  {
-    id: 2,
-    icon: '',
-    name: 'Moscow',
-    condition: 'cloudy',
-    temp: '30',
-    maxTemp: '32',
-    minTemp: '26'
-  },
-  {
-    id: 3,
-    icon: '',
-    name: 'Fethiye',
-    condition: 'cloudy',
-    temp: '35',
-    maxTemp: '36',
-    minTemp: '28'
-  },
-  {
-    id: 4,
-    icon: '',
-    name: 'Rome',
-    condition: 'cloudy',
-    temp: '33',
-    maxTemp: '34',
-    minTemp: '31'
-  },
-]);
+const store = useCitiesStore();
+const { cities } = storeToRefs(store);
 
 </script>

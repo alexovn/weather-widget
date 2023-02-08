@@ -1,7 +1,12 @@
 <template>
   <div>
+
+    <div v-if="error" class="mb-4 text-center text-red-600">
+      {{ error }}
+    </div>
+
     <div>
-      <WeatherMain v-if="!isLoading && cities.length" />
+      <WeatherMain v-if="cities.length" />
       <SkeletonWeatherMain v-else class="animate-pulse" />
     </div>
 
@@ -19,6 +24,7 @@
 </template>
 
 <script setup>
+import { watch } from 'vue';
 import WeatherMain from '@/components/WeatherMain.vue';
 import WeatherCities from '@/components/WeatherCities.vue';
 import WeatherCredits from '@/components/WeatherCredits.vue';
@@ -31,11 +37,15 @@ import { Cog8ToothIcon } from '@heroicons/vue/24/outline';
 import { useCitiesStore } from '@/stores/cities';
 import { storeToRefs } from 'pinia';
 
-import useSearch from '@/composables/useSearch';
+import useGeolocation from '@/composables/useGeolocation';
+import addCity from '@/composables/addCity';
 
 const store = useCitiesStore();
 const { cities } = storeToRefs(store);
+const { coords, error } = useGeolocation();
 
-const { isLoading } = useSearch();
+watch(coords, (newCoords, oldCoords) => {
+  addCity(newCoords.latitude, newCoords.longitude);
+});
 
 </script>

@@ -50,8 +50,6 @@ const addCity = async () => {
   const { error, search } = useSearch();
   const searchData = await search(lat, lon);
 
-  console.log(searchData);
-
   const {
       id,
       name,

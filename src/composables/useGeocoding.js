@@ -8,7 +8,7 @@ const geocoding = async (cityName) => {
 
   try {
 
-    const resp = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${API_KEY}`);
+    const resp = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${API_KEY}`);
 
     if(!resp.ok) {
       throw new Error('Could not fetch the data...');

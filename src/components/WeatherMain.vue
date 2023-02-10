@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="flex flex-col gap-[1rem]">
-      <div class="flex items-start justify-between gap-[4rem]">
+      <div class="flex items-start justify-between gap-[3rem]">
         <div>
           <div class="flex items-start">
             <span class="text-6xl font-medium">

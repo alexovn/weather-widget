@@ -3,28 +3,28 @@
     <li>
       <span class="block">Humidity:</span>
       <span class="block">
-        {{ weatherInfo.humidity }}
+        {{ cities[0].humidity }}
         <span>&#37;</span>
       </span>
     </li>
     <li>
       <span class="block">Visibility:</span>
       <span class="block">
-        {{ weatherInfo.visibility }}
+        {{ cities[0].visibility / 1000 }}
         <span>km</span>
       </span>
     </li>
     <li>
       <span class="block">Pressure:</span>
       <span class="block">
-        {{ weatherInfo.pressure }}
+        {{ cities[0].pressure }}
         <span>hPa</span>
       </span>
     </li>
     <li>
       <span class="block">Wind speed:</span>
       <span class="block">
-        {{ weatherInfo.windSpeed }}
+        {{ cities[0].wind.speed }}
         <span>m/s</span>
       </span>
     </li>
@@ -37,13 +37,5 @@ import { storeToRefs } from 'pinia';
 
 const store = useCitiesStore();
 const { cities } = storeToRefs(store);
-
-const weatherInfo = {
-  humidity: cities.value[0]?.humidity,
-  visibility: cities.value[0]?.visibility,
-  pressure: cities.value[0]?.pressure,
-  windSpeed: cities.value[0]?.wind?.speed
-};
-
 
 </script>

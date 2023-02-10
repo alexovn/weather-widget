@@ -43,7 +43,9 @@ const { cities } = storeToRefs(store);
 const error = ref(null);
 
 const addItem = async () => {
-  if(citySearch.value === '') return;
+  const regexp = /\d/g;
+
+  if(citySearch.value === '' || regexp.test(citySearch.value) ) return;
 
   const { geocoding } = useGeocoding();
   const geocodingData = await geocoding(citySearch.value.trim());

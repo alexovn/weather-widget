@@ -6,15 +6,14 @@
     </button>
 
     <div>
-      <UiInput
-        v-model="citySearch"
-        id="search-city"
-        placeholder="Location name"
-        label="Add location:"
-        @keyup.enter="addCity"
-      >
+      <UiInput v-model="citySearch" id="search-city" placeholder="Location name" label="Add location:"
+        @keyup.enter="addItem">
         <UiButtonDefault name="Add" @click="addItem" />
       </UiInput>
+    </div>
+
+    <div v-if="error" class="mt-2 text-red-600">
+      {{ error }}
     </div>
 
     <WeatherCitiesList v-if="cities.length" @deleteItem="deleteCity" />
@@ -41,13 +40,31 @@ const citySearch = ref('');
 
 const { cities } = storeToRefs(store);
 
+const error = ref(null);
+
 const addItem = async () => {
+  if(citySearch.value === '') return;
+
   const { geocoding } = useGeocoding();
-  const geocodingData = await geocoding(citySearch.value);
+  const geocodingData = await geocoding(citySearch.value.trim());
+
+  if (geocodingData === undefined) return;
+
+  if (!geocodingData.length) {
+    error.value = `No results for ${citySearch.value}`;
+    return;
+  }
+  error.value = null;
+
   const { lat, lon } = geocodingData[0];
 
-  addCity(lat, lon);
+  const existedCity = cities.value.some(item => {
+    return (item.coord.lat).toFixed(0) === lat.toFixed(0) && (item.coord.lon).toFixed(0) === lon.toFixed(0);
+  });
 
+  if(existedCity) return;
+
+  addCity(lat, lon);
   citySearch.value = '';
 };
 

@@ -13,13 +13,15 @@ const addCity = async (lat, lon) => {
       main,
       weather,
       wind,
-      visibility
+      visibility,
+      coord
   } = searchData;
 
   store.$patch((state) => {
     state.cities.push({
       id,
       name,
+      coord,
       temp: main.temp,
       tempMin: main.temp_min,
       tempMax: main.temp_max,

@@ -45,7 +45,19 @@ const { cities } = storeToRefs(store);
 const { coords, error } = useGeolocation();
 
 watch(coords, (newCoords, oldCoords) => {
-  addCity(newCoords.latitude, newCoords.longitude);
+
+  if (localStorage.getItem('cities')) {
+    const savedCities = JSON.parse(localStorage.getItem('cities'));
+
+    const savedCity = savedCities.cities.some(item => {
+      return (item.coord.lat).toFixed(0) === (newCoords.latitude).toFixed(0) && (item.coord.lon).toFixed(0) === (newCoords.longitude).toFixed(0);
+    });
+
+    if(savedCity) return;
+
+    addCity(newCoords.latitude, newCoords.longitude);
+  }
+  
 });
 
 </script>

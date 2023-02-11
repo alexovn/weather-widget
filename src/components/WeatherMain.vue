@@ -2,7 +2,7 @@
   <div>
     <div class="mb-6 flex items-start justify-between">
       <div class="w-[3rem] h-[3rem]">
-        <img :src="`http://openweathermap.org/img/wn/${cities[0].weather.icon}@2x.png`" alt="" />
+        <img :src="`https://openweathermap.org/img/wn/${cities[0].weather.icon}@2x.png`" :alt="cities[0].weather.description" />
       </div>
       <div class="text-right">
         <div class="text-xl font-medium">

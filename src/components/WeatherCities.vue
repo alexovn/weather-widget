@@ -13,7 +13,7 @@
       >
         <div class="mb-1 flex items-start justify-between">
           <div class="w-[2rem] h-[2rem]">
-            <img :src="`http://openweathermap.org/img/wn/${city.weather.icon}@2x.png`" alt="" />
+            <img :src="`https://openweathermap.org/img/wn/${city.weather.icon}@2x.png`" :alt="city.weather.description" />
           </div>
           <div class="max-w-[3.3rem] text-[0.7rem] text-right">
             <div class="font-medium truncate">

@@ -43,14 +43,12 @@ const { cities } = storeToRefs(store);
 const error = ref(null);
 
 const addItem = async () => {
-  const regexp = /\d/g;
+  const regexp = /^[A-Za-zА-ЯЁа-яё\s-]*$/g;
 
-  if(citySearch.value === '' || regexp.test(citySearch.value) ) return;
+  if(citySearch.value === '' || !regexp.test(citySearch.value) ) return;
 
   const { geocoding } = useGeocoding();
   const geocodingData = await geocoding(citySearch.value.trim());
-
-  if (geocodingData === undefined) return;
 
   if (!geocodingData.length) {
     error.value = `No results for ${citySearch.value}`;

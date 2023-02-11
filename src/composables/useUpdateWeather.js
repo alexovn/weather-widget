@@ -46,7 +46,6 @@ const updateWeather = async () => {
           visibility
         });
       }
-
       
       return arr;
     };

@@ -1,6 +1,10 @@
 # Weather widget
 
-Weather widget app
+Weather widget app. Search. Save. Refresh
+
+## Demo
+
+https://alexovn.github.io/weather-widget/
 
 ## Features
 

@@ -44,19 +44,18 @@ const store = useCitiesStore();
 const { cities } = storeToRefs(store);
 const { coords, error } = useGeolocation();
 
-watch(coords, (newCoords, oldCoords) => {
+watch(coords, (newCoords) => {
 
   if (localStorage.getItem('cities')) {
     const savedCities = JSON.parse(localStorage.getItem('cities'));
 
-    const savedCity = savedCities.cities.some(item => {
-      return (item.coord.lat).toFixed(0) === (newCoords.latitude).toFixed(0) && (item.coord.lon).toFixed(0) === (newCoords.longitude).toFixed(0);
+    const savedCity = savedCities.some(item => {
+      return (item.lat).toFixed(0) === (newCoords.latitude).toFixed(0) && (item.lon).toFixed(0) === (newCoords.longitude).toFixed(0);
     });
 
     if(savedCity) return;
-
-    addCity(newCoords.latitude, newCoords.longitude);
   }
+  addCity(newCoords.latitude, newCoords.longitude);
   
 });
 

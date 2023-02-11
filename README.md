@@ -1,35 +1,32 @@
-# weather-widget
+# Weather widget
 
-This template should help get you started developing with Vue 3 in Vite.
+Weather widget app
 
-## Recommended IDE Setup
+## Features
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- **Search weather**: Search weather around the World using [OpenWeather API](https://openweathermap.org/)
+- **Delete searched city**: Just click on garbage icon near city name in Settings
+- **Save your weather searches**: Autosave and sync your searches with LocalStorage
+- **Cities slider**: Fast access to the weather across all cities in one place. Switch cities by click on card! Powered by [Swiper.js](https://swiperjs.com/)
+- **Reorder cities**: Reorder cities using drag and drop feature
+- **Geolocation**: Allow using geolocation once and get current weather in your location
+- **Refresh weather**: Use refresh icon and update all weather at once
 
-## Customize configuration
+## In future updates
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- **Adaptive**: Search weather in all devices
+- **Forecast widget**: Daily forecast for 8 days
 
-## Project Setup
+## Project setup
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
-
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
-
 ```sh
 npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
 ```

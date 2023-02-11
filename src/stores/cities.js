@@ -5,5 +5,13 @@ export const useCitiesStore = defineStore('cities', () => {
 
   const cities = ref([]);
 
-  return { cities };
+  const updateCities = async (arr) => {
+    try {
+      cities.value = await arr;
+    } catch(err) {
+      console.error(err);
+    }
+  }
+
+  return { cities, updateCities };
 });

@@ -15,10 +15,18 @@
 
     <div class="mt-3 min-h-[1.4rem]">
       <WeatherCredits />
-      <button class="mt-1 ml-auto w-6 h-6 flex items-center justify-center hover:rotate-12 transition-transform"
-        @click="$emit('changeComponent', WeatherSettings)">
-        <Cog8ToothIcon class="w-full h-full text-slate-800" />
-      </button>
+      <div class="mt-1 flex items-center justify-between">
+        <button class="w-6 h-6 flex items-center justify-center group" @click="refreshWeather">
+          <ArrowPathIcon
+            class="w-full h-full text-slate-800"
+            :class="{ 'animate-spin': isUpdating }"
+          />
+        </button>
+        <button class="w-6 h-6 flex items-center justify-center hover:rotate-12 transition-transform"
+          @click="$emit('changeComponent', WeatherSettings)">
+          <Cog8ToothIcon class="w-full h-full text-slate-800" />
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -33,16 +41,22 @@ import WeatherSettings from '@/components/WeatherSettings.vue';
 import SkeletonWeatherMain from '@/components/Skeleton/SkeletonWeatherMain.vue';
 import SkeletonWeatherCities from '@/components/Skeleton/SkeletonWeatherCities.vue';
 
-import { Cog8ToothIcon } from '@heroicons/vue/24/outline';
+import { Cog8ToothIcon, ArrowPathIcon } from '@heroicons/vue/24/outline';
 import { useCitiesStore } from '@/stores/cities';
 import { storeToRefs } from 'pinia';
 
 import useGeolocation from '@/composables/useGeolocation';
 import addCity from '@/composables/addCity';
+import useUpdateWeather from '@/composables/useUpdateWeather';
 
 const store = useCitiesStore();
 const { cities } = storeToRefs(store);
 const { coords, error } = useGeolocation();
+const { updateWeather, isUpdating } = useUpdateWeather();
+
+const refreshWeather = async () => {
+  await updateWeather();
+};
 
 watch(coords, (newCoords) => {
 
@@ -53,10 +67,10 @@ watch(coords, (newCoords) => {
       return (item.lat).toFixed(0) === (newCoords.latitude).toFixed(0) && (item.lon).toFixed(0) === (newCoords.longitude).toFixed(0);
     });
 
-    if(savedCity) return;
+    if (savedCity) return;
   }
   addCity(newCoords.latitude, newCoords.longitude);
-  
+
 });
 
 </script>

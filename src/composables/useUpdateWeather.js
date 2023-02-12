@@ -16,7 +16,12 @@ const updateWeather = async () => {
       const arr = [];
 
       for await (const city of cities) {
-        const searchData = await search(city.lat, city.lon);
+        const url = `api.openweathermap.org/data/2.5/weather?lat=${city.lat}&lon=${city.lon}&units=metric`;
+        // const forecastUrl = ``;
+
+        const searchData = await search(url);
+        // const forecastData = await search(forecastUrl);
+
         const {
           id,
           name,
@@ -43,7 +48,8 @@ const updateWeather = async () => {
           wind: {
             speed: wind.speed
           },
-          visibility
+          visibility,
+          // forecast: forecastData.list
         });
       }
       

@@ -25,12 +25,6 @@ const credits = ref([
     author: 'OpenWeather',
     link: 'https://openweathermap.org/',
   },
-  // {
-  //   id: 2,
-  //   title: 'weather icons created by:',
-  //   author: 'Leya Kuznetsova',
-  //   link: 'https://www.figma.com/@leyakuznetsova?fuid=941186231916120398'
-  // }
 ]);
 
 </script>

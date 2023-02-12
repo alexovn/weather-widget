@@ -4,8 +4,12 @@ import useSearch from '@/composables/useSearch';
 const addCity = async (lat, lon) => {
   const store = useCitiesStore();
   const { search } = useSearch();
+  
+  const url = `api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric`;
+  // const forecastUrl = ``;
 
-  const searchData = await search(lat, lon);
+  const searchData = await search(url);
+  // const forecastData = await search(forecastUrl);
 
   const {
       id,
@@ -34,7 +38,8 @@ const addCity = async (lat, lon) => {
       wind: {
         speed: wind.speed
       },
-      visibility
+      visibility,
+      // forecast: forecastData.list
     });
   });
 };

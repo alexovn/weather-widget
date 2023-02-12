@@ -1,11 +1,10 @@
 <template>
   <div class="mt-5 bg-slate-300 rounded-2xl">
     <div
-      class="max-h-[18rem] overflow-y-auto scrollbar"
-      :class="cities.length > 6 ? 'pr-[1rem]' : ''"
+      class="mb-[-3rem] max-h-[18rem] overflow-y-auto scrollbar"
     >
       <div
-        class="p-2 flex items-center justify-between bg-slate-50 rounded-xl group hover:bg-slate-400 transition-colors [&:not(:last-child)]:mb-2"
+        class="p-2 flex items-center justify-between bg-slate-50 rounded-xl group hover:bg-slate-400 transition-colors [&:not(:last-child)]:mb-2 last:mb-[3rem]"
         v-for="(city, idx) in cities" :key="city.id" draggable="true" @dragstart="onDragStart($event, idx, city)"
         @drop="onDrop($event, idx)" @dragover.prevent @dragenter.prevent>
         <div>

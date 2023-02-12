@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-3 p-4 bg-slate-300 rounded-2xl">
+  <div class="mt-3 bg-slate-300 rounded-2xl">
     <div
       class="p-2 flex items-center justify-between bg-slate-50 rounded-xl group hover:bg-slate-400 transition-colors [&:not(:last-child)]:mb-2"
       v-for="(city, idx) in cities" :key="city.id"

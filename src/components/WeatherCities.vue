@@ -7,7 +7,7 @@
       style="overflow: visible;"
     >
       <swiper-slide
-        class="p-2 w-[6rem] h-[6rem] shrink-0 bg-slate-200 rounded-2xl hover:bg-slate-400 transition-colors cursor-pointer"
+        class="p-2 w-[6rem] h-[6rem] shrink-0 bg-slate-200 rounded-2xl hover:bg-slate-50 hover:shadow-md hover:scale-105 hover:rotate-2 transition-all cursor-pointer"
         v-for="city in citiesFiltered" :key="city.id"
         @click="handleClickOnSlide(city)"
       >

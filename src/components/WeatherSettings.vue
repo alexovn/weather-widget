@@ -1,10 +1,5 @@
 <template>
-  <div>
-    <button class="ml-auto w-6 h-6 flex items-center justify-center group"
-      @click="$emit('changeComponent', WeatherView)">
-      <XCircleIcon class="w-full h-full group-hover:rotate-45 translate-transform" />
-    </button>
-
+  <div class="p-4 flex flex-col bg-slate-300 shadow-md rounded-3xl overflow-hidden">
     <div>
       <UiInput v-model="citySearch" id="search-city" placeholder="Location name" label="Add location:"
         @keyup.enter="addItem">
@@ -24,11 +19,8 @@
 import { ref } from 'vue';
 import { useCitiesStore } from '@/stores/cities';
 import { storeToRefs } from 'pinia';
-import { XCircleIcon } from '@heroicons/vue/24/outline';
 
-import WeatherView from '@/components/WeatherView.vue';
 import WeatherCitiesList from '@/components/WeatherCitiesList.vue';
-
 import UiInput from '@/components/Ui/UiInput.vue';
 import UiButtonDefault from '@/components/Ui/Button/UiButtonDefault.vue';
 

@@ -21,3 +21,13 @@ body {
   opacity: 0;
   transform: translateY(30px);
 }
+
+.opacity-enter-active,
+.opacity-leave-active {
+  transition: all 0.3s ease;
+}
+
+.opacity-enter-from,
+.opacity-leave-to {
+  opacity: 0;
+}

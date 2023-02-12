@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="p-4 flex flex-col bg-slate-50 shadow-md rounded-3xl bg-clip-padding backdrop-filter bg-opacity-60 backdrop-blur-xl overflow-hidden">
 
     <div v-if="error" class="mb-4 text-center text-red-600">
       {{ error }}
@@ -23,7 +23,7 @@
           />
         </button>
         <button class="w-6 h-6 flex items-center justify-center hover:rotate-12 transition-transform"
-          @click="$emit('changeComponent', WeatherSettings)">
+          @click="$emit('show')">
           <Cog8ToothIcon class="w-full h-full text-slate-800" />
         </button>
       </div>
@@ -36,7 +36,6 @@ import { watch } from 'vue';
 import WeatherMain from '@/components/WeatherMain.vue';
 import WeatherCities from '@/components/WeatherCities.vue';
 import WeatherCredits from '@/components/WeatherCredits.vue';
-import WeatherSettings from '@/components/WeatherSettings.vue';
 
 import SkeletonWeatherMain from '@/components/Skeleton/SkeletonWeatherMain.vue';
 import SkeletonWeatherCities from '@/components/Skeleton/SkeletonWeatherCities.vue';

@@ -1,22 +1,26 @@
 <template>
-  <div
-    class="relative p-4 w-96 flex flex-col bg-slate-50 shadow-md rounded-3xl bg-clip-padding backdrop-filter bg-opacity-60 backdrop-blur-xl overflow-hidden">
-    <transition name="translate" mode="out-in">
-      <keep-alive>
-        <component :is="componentName" @change-component="changeViews"></component>
-      </keep-alive>
-    </transition>
+  <div class="relative w-96">
+    <WeatherView @show="showComponent" />
+
+    <VueModal :show="isShowing" @show="showComponent">
+      <WeatherSettings @show="showComponent" />
+    </VueModal>
+
+    <VueBackdrop :show="isShowing" @show="showComponent" />
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import WeatherView from '@/components/WeatherView.vue';
-import { shallowRef } from 'vue';
+import VueModal from '@/components/Vue/VueModal.vue';
+import WeatherSettings from '@/components/WeatherSettings.vue';
+import VueBackdrop from '@/components/Vue/VueBackdrop.vue';
 
-const componentName = shallowRef(WeatherView);
+const isShowing = ref(false);
 
-const changeViews = (component) => {
-  componentName.value = component;
-}
+const showComponent = () => {
+  isShowing.value = !isShowing.value
+};
 
 </script>

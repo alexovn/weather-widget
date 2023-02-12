@@ -1,8 +1,8 @@
 <template>
   <div>
-    <button class="ml-auto w-6 h-6 flex items-center justify-center hover:rotate-45 translate-transform"
+    <button class="ml-auto w-6 h-6 flex items-center justify-center group"
       @click="$emit('changeComponent', WeatherView)">
-      <XCircleIcon class="w-full h-full" />
+      <XCircleIcon class="w-full h-full group-hover:rotate-45 translate-transform" />
     </button>
 
     <div>

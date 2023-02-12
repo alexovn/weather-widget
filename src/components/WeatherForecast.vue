@@ -6,7 +6,6 @@
           v-for="item of forecast" :key="item.id">
           <span>{{ item.date }}</span>
           <div class="flex items-center gap-2">
-            <IconCloudy class="w-[1.5rem] h-[1.5rem]" />
             <div class="flex items-center gap-[0.5rem]">
               <div class="flex items-start">
                 <span class="text-xl">
